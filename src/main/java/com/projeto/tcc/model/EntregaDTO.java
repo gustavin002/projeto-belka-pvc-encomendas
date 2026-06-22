@@ -1,0 +1,17 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.projeto.tcc.model;
+
+public class EntregaDTO {
+    
+    private int idEntrega;
+    private String nomeProduto;
+    private String statusAtual;
+    private double peso;
+    private String nomeCliente;
+    private String emailCliente;
+    private String enderecoEntrega;
+    
+}
