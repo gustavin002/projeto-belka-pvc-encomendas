@@ -6,12 +6,6 @@ package com.projeto.tcc.model;
 
 public class EntregaDTO {
     
-    private int idEntrega;
-    private String nomeProduto;
-    private String statusAtual;
-    private double peso;
-    private String nomeCliente;
-    private String emailCliente;
-    private String enderecoEntrega;
+    
     
 }

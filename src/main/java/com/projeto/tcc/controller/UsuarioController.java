@@ -4,10 +4,7 @@
  */
 package com.projeto.tcc.controller;
 
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class OperadorLogisticoController {
+public class UsuarioController {
     
     
     

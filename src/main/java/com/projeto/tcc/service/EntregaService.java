@@ -4,7 +4,7 @@
  */
 package com.projeto.tcc.service;
 
-public class ClienteService {
+public class EntregaService {
     
     
     
