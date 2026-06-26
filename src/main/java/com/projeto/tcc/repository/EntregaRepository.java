@@ -4,7 +4,12 @@
  */
 package com.projeto.tcc.repository;
 
-public class EntregaRepository {
+import com.projeto.tcc.model.EntregaDTO;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EntregaRepository extends JpaRepository<EntregaDTO, Integer>{
     
     
     

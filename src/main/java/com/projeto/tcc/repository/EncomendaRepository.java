@@ -4,7 +4,12 @@
  */
 package com.projeto.tcc.repository;
 
-public class EncomendaRepository {
+import com.projeto.tcc.model.EncomendaDTO;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EncomendaRepository extends JpaRepository<EncomendaDTO, Integer> {
     
     
     
