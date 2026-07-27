@@ -73,7 +73,7 @@ public class TokenService {
                 .claim("nome", "Administrador")
                 .claim("role", "admin")
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 3000000))
+                .expiration(new Date(System.currentTimeMillis() + 1800000))
                 .signWith(this.getKeySign())
                 .compact();
     }

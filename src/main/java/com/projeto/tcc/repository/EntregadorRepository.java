@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EntregadorRepository extends JpaRepository<EntregadorDTO, Integer> {
 
-    EntregadorDTO findByIdEntregador(Integer idEntregador);
+    EntregadorDTO findByIdUsuario(Integer idEntregador);
     List<EntregadorDTO> findByDisponibilidadeUsuario(String disponibilidadeUsuario);
 
 }

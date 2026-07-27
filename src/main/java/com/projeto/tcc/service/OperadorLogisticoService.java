@@ -22,7 +22,7 @@ public class OperadorLogisticoService extends UsuarioService {
     private OperadorLogisticoRepository operadorLogisticoRepository;
 
     public OperadorLogisticoDTO buscarOperadorPorId(Integer idOperador) {
-        OperadorLogisticoDTO operador = operadorLogisticoRepository.findByIdOperadorLogistico(idOperador);
+        OperadorLogisticoDTO operador = operadorLogisticoRepository.findByIdUsuario(idOperador);
     
     if (operador == null) {
         throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Operador logístico não encontrado");

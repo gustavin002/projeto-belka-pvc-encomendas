@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OperadorLogisticoRepository extends JpaRepository<OperadorLogisticoDTO, Integer> {
 
-    OperadorLogisticoDTO findByIdOperadorLogistico(Integer idOperador);
+    OperadorLogisticoDTO findByIdUsuario(Integer idOperador);
     
 }

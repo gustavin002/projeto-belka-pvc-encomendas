@@ -144,5 +144,5 @@ public class EncomendaService {
         return encomendaRepository.findByOperadorLogistico(operador);
         
     }
-    
+
 }

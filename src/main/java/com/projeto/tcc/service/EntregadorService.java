@@ -31,7 +31,7 @@ public class EntregadorService extends UsuarioService {
     private EntregaService entregaService;
 
     public EntregadorDTO buscarEntregadorPorId(Integer idEntregador) {
-        EntregadorDTO entregador = entregadorRepository.findByIdEntregador(idEntregador);
+        EntregadorDTO entregador = entregadorRepository.findByIdUsuario(idEntregador);
         
         if (entregador == null) {
             throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Entregador não encontrado");
@@ -80,4 +80,5 @@ public class EntregadorService extends UsuarioService {
 
         return entregaSalva;
     }
+
 }
