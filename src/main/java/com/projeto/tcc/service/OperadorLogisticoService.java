@@ -4,11 +4,51 @@
  */
 package com.projeto.tcc.service;
 
+
+import com.projeto.tcc.model.EncomendaDTO;
+import com.projeto.tcc.model.EntregadorDTO;
+import com.projeto.tcc.model.OperadorLogisticoDTO;
+import com.projeto.tcc.repository.OperadorLogisticoRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class OperadorLogisticoService {
+public class OperadorLogisticoService extends UsuarioService {
+
+    @Autowired
+    private OperadorLogisticoRepository operadorLogisticoRepository;
+
+    public OperadorLogisticoDTO buscarOperadorPorId(Integer idOperador) {
+        OperadorLogisticoDTO operador = operadorLogisticoRepository.findByIdOperadorLogistico(idOperador);
     
+    if (operador == null) {
+        throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Operador logístico não encontrado");
+    }
+
+        return operador; 
+    }
     
-    
+    public OperadorLogisticoDTO cadastrarOperadorLogistico(String nome, String email, String senha) {
+        OperadorLogisticoDTO operador = new OperadorLogisticoDTO();
+        operador.setNomeUsuario(nome);
+        operador.setEmailUsuario(email);
+        operador.setSenhaUsuario(senha);
+        operador.setDisponibilidadeUsuario("disponível");
+
+        return operadorLogisticoRepository.save(operador);
+    }
+
+    public List<OperadorLogisticoDTO> listarOperadoresLogisticos() {
+        return operadorLogisticoRepository.findAll();
+    }
+
+    public void enviarEmailEntregador(EntregadorDTO entregador, EncomendaDTO encomenda) {
+        this.enviarEmail(entregador.getEmailUsuario(),"Belka PVC Encomendas - Nova entrega atribuída", "Cliente: " +
+            encomenda.getCliente().getNomeCliente()
+            + "\nEndereço de entrega: " + encomenda.getCliente().getEnderecoCliente());
+    }
+
 }

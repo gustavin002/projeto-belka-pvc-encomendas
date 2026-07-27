@@ -4,11 +4,62 @@
  */
 package com.projeto.tcc.controller;
 
-import org.springframework.stereotype.Controller;
+import com.projeto.tcc.model.ClienteDTO;
+import com.projeto.tcc.model.EncomendaDTO;
+import com.projeto.tcc.model.EntregaDTO;
+import com.projeto.tcc.model.EntregadorDTO;
+import com.projeto.tcc.model.UsuarioDTO;
+import com.projeto.tcc.service.ClienteService;
+import com.projeto.tcc.service.EncomendaService;
+import com.projeto.tcc.service.EntregadorService;
+import com.projeto.tcc.service.TokenService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping("/operadores-logisticos")
 public class OperadorLogisticoController {
     
+    @Autowired
+    private TokenService tokenService;
     
+    @Autowired
+    private ClienteService clienteService;
+    
+    @Autowired
+    private EncomendaService encomendaService;
+    
+    @Autowired
+    private EntregadorService entregadorService;
+    
+    @PostMapping("/cadastrarCliente")
+    public ClienteDTO cadastrarCliente(@RequestBody ClienteDTO clienteRequest){
+        return clienteService.cadastrarCliente(clienteRequest);
+    }
+
+    @PostMapping("/cadastrar-encomenda")
+    public EncomendaDTO cadastrarEncomenda(@RequestHeader("Authorization") String auth, @RequestBody ClienteDTO clienteRequest) {
+        String token = auth.replace("Bearer ", "");
+        UsuarioDTO usuario = tokenService.extrairClaim(token);
+
+        return encomendaService.cadastrarEncomenda(usuario.getIdUsuario(), clienteRequest);
+    }
+
+    @GetMapping("/entregadores-disponiveis")
+    public List<EntregadorDTO> listarEntregadoresDisponiveis() {
+        return entregadorService.listarEntregadoresDisponiveis();
+    }
+
+    @PostMapping
+    public EntregaDTO escolherEntregadorparaEncomenda(@RequestParam Integer idEncomenda, @RequestParam Integer idEntregador) {
+        return entregadorService.escolherEntregadorParaEncomenda(idEncomenda, idEntregador);
+    }
     
 }

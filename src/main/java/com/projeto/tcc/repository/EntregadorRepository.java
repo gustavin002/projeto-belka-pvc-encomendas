@@ -4,11 +4,15 @@
  */
 package com.projeto.tcc.repository;
 
+import com.projeto.tcc.model.EntregadorDTO;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class EntregadorRepository {
-    
-    
-    
+public interface EntregadorRepository extends JpaRepository<EntregadorDTO, Integer> {
+
+    EntregadorDTO findByIdEntregador(Integer idEntregador);
+    List<EntregadorDTO> findByDisponibilidadeUsuario(String disponibilidadeUsuario);
+
 }

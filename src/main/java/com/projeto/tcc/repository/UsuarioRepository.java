@@ -4,14 +4,13 @@
  */
 package com.projeto.tcc.repository;
 
-import com.projeto.tcc.model.ClienteDTO;
+import com.projeto.tcc.model.UsuarioDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<ClienteDTO, Integer> {
+public interface UsuarioRepository extends JpaRepository<UsuarioDTO, Integer>{
     
-    ClienteDTO findByIdCliente(Integer idCliente);
-    ClienteDTO findByEmailCliente(String EmailCliente);
+    UsuarioDTO findByEmailUsuarioAndSenhaUsuario(String emailUsuario, String senhaUsuario);
     
 }

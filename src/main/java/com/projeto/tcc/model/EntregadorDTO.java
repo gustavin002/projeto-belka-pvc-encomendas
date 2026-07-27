@@ -4,7 +4,12 @@
  */
 package com.projeto.tcc.model;
 
-public class EntregadorDTO {
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("entregador")
+public class EntregadorDTO extends UsuarioDTO{
     
     
     
