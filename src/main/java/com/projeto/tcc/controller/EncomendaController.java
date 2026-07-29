@@ -27,15 +27,18 @@ public class EncomendaController {
     private TokenService tokenService;
 
     @GetMapping("/operador")
-    public List<EncomendaDTO> listarPorOperador(@RequestHeader("Authorization") String auth) {
+    public List<EncomendaDTO> listarPorOperador(@RequestHeader("Authorization") String auth, Integer idOperadorLogistico) {
         String token = auth.replace("Bearer ", "");
         UsuarioDTO usuario = tokenService.extrairClaim(token);
 
-        return encomendaService.listarEncomendasPorOperador(usuario.getIdUsuario());
+        return encomendaService.listarEncomendasPorOperador(idOperadorLogistico);
     }
 
     @GetMapping("/cliente/{idCliente}")
-    public List<EncomendaDTO> listarPorCliente(@PathVariable Integer idCliente) {
+    public List<EncomendaDTO> listarPorCliente(@RequestHeader("Authorization") String auth, @PathVariable Integer idCliente) {
+        String token = auth.replace("Bearer ", "");
+        UsuarioDTO usuario = tokenService.extrairClaim(token);
+        
         return encomendaService.listarEncomendasPorCliente(idCliente);
     }
 

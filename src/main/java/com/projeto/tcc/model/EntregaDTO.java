@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class EntregaDTO {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_entrega")
     private Integer idEntrega;
     
