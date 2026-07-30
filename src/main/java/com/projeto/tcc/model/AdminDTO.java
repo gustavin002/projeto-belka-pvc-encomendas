@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class AdminDTO {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "id_admin")
     private Integer idAdmin;

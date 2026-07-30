@@ -61,7 +61,7 @@ public class TokenService {
     }
 
     public String gerarToken(AdminDTO admin) {
-        if (admin.getIdAdmin() == 0) {
+        if (admin.getIdAdmin() == null || admin.getIdAdmin() <= 0) {
             throw new ResponseStatusException(HttpStatusCode.valueOf(400), "Id do admin inválido");
         }
         if (admin.getEmailAdmin() == null || admin.getEmailAdmin().equals("")) {

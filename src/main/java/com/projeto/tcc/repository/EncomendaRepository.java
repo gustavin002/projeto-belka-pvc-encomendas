@@ -4,9 +4,7 @@
  */
 package com.projeto.tcc.repository;
 
-import com.projeto.tcc.model.ClienteDTO;
 import com.projeto.tcc.model.EncomendaDTO;
-import com.projeto.tcc.model.OperadorLogisticoDTO;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -17,7 +15,7 @@ public interface EncomendaRepository extends JpaRepository<EncomendaDTO, Integer
     EncomendaDTO findByIdEncomenda(Integer idEncomenda);
     EncomendaDTO findByCodigoRastreioEncomenda(String codigoRastreioEncomenda);
     boolean existsByCodigoRastreioEncomenda(String codigo);
-    List<EncomendaDTO> findByCliente(ClienteDTO cliente);
-    List<EncomendaDTO> findByOperadorLogistico(OperadorLogisticoDTO operadorLogistico);
+    List<EncomendaDTO> findByCliente_idCliente(Integer IdCliente);
+    List<EncomendaDTO> findByOperadorLogistico_idUsuario(Integer idOperadorLogistico);
 
 }

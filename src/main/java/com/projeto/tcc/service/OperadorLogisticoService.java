@@ -21,8 +21,8 @@ public class OperadorLogisticoService extends UsuarioService {
     @Autowired
     private OperadorLogisticoRepository operadorLogisticoRepository;
 
-    public OperadorLogisticoDTO buscarOperadorPorId(Integer idOperador) {
-        OperadorLogisticoDTO operador = operadorLogisticoRepository.findByIdUsuario(idOperador);
+    public OperadorLogisticoDTO buscarOperadorPorId(Integer idOperadorLogistico) {
+        OperadorLogisticoDTO operador = operadorLogisticoRepository.findByIdUsuario(idOperadorLogistico);
     
     if (operador == null) {
         throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Operador logístico não encontrado");

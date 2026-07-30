@@ -133,15 +133,11 @@ public class EncomendaService {
     }
     
     public List<EncomendaDTO> listarEncomendasPorCliente(Integer idCliente) {
-        ClienteDTO cliente = clienteService.buscarClientePorId(idCliente);
-    
-        return encomendaRepository.findByCliente(cliente);
-}
+        return encomendaRepository.findByCliente_idCliente(idCliente);
+    }
     
     public List<EncomendaDTO> listarEncomendasPorOperador(Integer idOperadorLogistico) {
-        OperadorLogisticoDTO operador = operadorLogisticoService.buscarOperadorPorId(idOperadorLogistico);
-
-        return encomendaRepository.findByOperadorLogistico(operador);
+        return encomendaRepository.findByOperadorLogistico_idUsuario(idOperadorLogistico);
         
     }
 

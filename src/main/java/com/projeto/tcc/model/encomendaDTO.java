@@ -18,7 +18,7 @@ import jakarta.persistence.Table;
 public class EncomendaDTO {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_encomenda")
     private Integer idEncomenda;
  
@@ -86,5 +86,5 @@ public class EncomendaDTO {
     public void setOperadorLogistico(OperadorLogisticoDTO operadorLogistico) {
         this.operadorLogistico = operadorLogistico;
     }
-
+    
 }
