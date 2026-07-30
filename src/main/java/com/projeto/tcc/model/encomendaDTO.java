@@ -21,23 +21,28 @@ public class EncomendaDTO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_encomenda")
     private Integer idEncomenda;
- 
+
     @Column(name = "codigo_rastreio_encomenda", nullable = false, unique = true)
     private String codigoRastreioEncomenda;
- 
+
     @Column(name = "endereco_atual_encomenda", nullable = false)
     private String enderecoAtualEncomenda;
- 
+
     @Column(name = "status_encomenda", nullable = false)
     private String statusEncomenda;
- 
-    @ManyToOne()
+
+    @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
     private ClienteDTO cliente;
 
-    @ManyToOne()
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_operador_logistico", nullable = false)
     private OperadorLogisticoDTO operadorLogistico;
+
+    @ManyToOne
+    @JoinColumn(name = "id_entregador")
+    private EntregadorDTO entregador;
+
 
     public Integer getIdEncomenda() {
         return idEncomenda;
@@ -85,6 +90,14 @@ public class EncomendaDTO {
 
     public void setOperadorLogistico(OperadorLogisticoDTO operadorLogistico) {
         this.operadorLogistico = operadorLogistico;
+    }
+
+    public EntregadorDTO getEntregador() {
+        return entregador;
+    }
+
+    public void setEntregador(EntregadorDTO entregador) {
+        this.entregador = entregador;
     }
 
 }

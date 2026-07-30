@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.projeto.tcc.model.ClienteDTO;
 import com.projeto.tcc.model.EncomendaDTO;
 import com.projeto.tcc.model.EntregaDTO;
+import com.projeto.tcc.model.EntregadorDTO;
 import com.projeto.tcc.model.OperadorLogisticoDTO;
 import com.projeto.tcc.repository.EncomendaRepository;
 
@@ -30,6 +31,9 @@ public class EncomendaService {
     
     @Autowired
     private UsuarioService usuarioService;
+    
+    @Autowired
+    private EntregadorService entregadorService;
     
     @Autowired
     private EntregaService entregaService;
@@ -132,17 +136,14 @@ public class EncomendaService {
         return encomendaRepository.save(encomenda);
     }
     
-    public List<EncomendaDTO> listarEncomendasPorCliente(Integer idCliente) {
-        ClienteDTO cliente = clienteService.buscarClientePorId(idCliente);
-        
-        return encomendaRepository.findByIdCliente(idCliente);
+    public List<EncomendaDTO> listarEncomendasPorOperador(Integer idOperadorLogistico) {
+        return encomendaRepository.findByOperadorLogistico_idUsuario(idOperadorLogistico);      
     }
     
-    public List<EncomendaDTO> listarEncomendasPorOperador(Integer idOperadorLogistico) {
-        OperadorLogisticoDTO operador = operadorLogisticoService.buscarOperadorPorId(idOperadorLogistico);
+    public List<EncomendaDTO> listarEncomendasPorEntregador(Integer idEntregador) {
+        EntregadorDTO entregador = entregadorService.buscarEntregadorPorId(idEntregador);
         
-        return encomendaRepository.findByIdOperadorLogistico(idOperadorLogistico);
-        
+        return encomendaRepository.findByEntregador_idUsuario(idEntregador);
     }
 
 }
