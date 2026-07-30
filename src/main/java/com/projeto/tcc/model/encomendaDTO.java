@@ -39,11 +39,6 @@ public class EncomendaDTO {
     @JoinColumn(name = "id_operador_logistico", nullable = false)
     private OperadorLogisticoDTO operadorLogistico;
 
-    @ManyToOne
-    @JoinColumn(name = "id_entregador")
-    private EntregadorDTO entregador;
-
-
     public Integer getIdEncomenda() {
         return idEncomenda;
     }
@@ -90,14 +85,6 @@ public class EncomendaDTO {
 
     public void setOperadorLogistico(OperadorLogisticoDTO operadorLogistico) {
         this.operadorLogistico = operadorLogistico;
-    }
-
-    public EntregadorDTO getEntregador() {
-        return entregador;
-    }
-
-    public void setEntregador(EntregadorDTO entregador) {
-        this.entregador = entregador;
     }
 
 }
