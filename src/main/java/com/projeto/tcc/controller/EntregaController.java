@@ -25,10 +25,11 @@ public class EntregaController {
     @Autowired
     private TokenService tokenService;
     
-    @GetMapping("/minhas-entregas")
+    @GetMapping("/listar/entregas/entregador")
     public List<EntregaDTO> listarEntregasDoEntregador(@RequestHeader("Authorization") String auth) {
         String token = auth.replace("Bearer ", "");
         UsuarioDTO usuario = tokenService.extrairClaim(token);
+        
         return entregaService.listarEntregasDoEntregador(usuario.getIdUsuario());
     }
 

@@ -23,12 +23,12 @@ public class EncomendaController {
     @Autowired
     private TokenService tokenService;
 
-    @GetMapping("/operador/encomendas/operador")
-    public List<EncomendaDTO> listarEncomendasPorOperador(@RequestHeader("Authorization") String auth, Integer idOperadorLogistico) {
+    @GetMapping("/listar/encomendas/operador")
+    public List<EncomendaDTO> listarEncomendasPorOperador(@RequestHeader("Authorization") String auth) {
         String token = auth.replace("Bearer ", "");
         UsuarioDTO usuario = tokenService.extrairClaim(token);
 
-        return encomendaService.listarEncomendasPorOperador(idOperadorLogistico);
+        return encomendaService.listarEncomendasPorOperador(usuario.getIdUsuario());
     }
 
 }

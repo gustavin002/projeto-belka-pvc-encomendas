@@ -49,6 +49,7 @@ public class AdminController {
     public AdminDTO adminLogado(@RequestHeader("Authorization") String auth) {
         String token = auth.replace("Bearer ", "");
         Integer id = tokenService.extrairId(token);
+        
         return adminService.buscarAdminPorId(id);
     }
 

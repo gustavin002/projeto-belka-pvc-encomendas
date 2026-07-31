@@ -4,7 +4,6 @@
  */
 package com.projeto.tcc.service;
 
-
 import com.projeto.tcc.model.EncomendaDTO;
 import com.projeto.tcc.model.EntregadorDTO;
 import com.projeto.tcc.model.OperadorLogisticoDTO;

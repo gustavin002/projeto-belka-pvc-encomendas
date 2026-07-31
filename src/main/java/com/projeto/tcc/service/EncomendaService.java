@@ -13,7 +13,6 @@ import org.springframework.web.server.ResponseStatusException;
 import com.projeto.tcc.model.ClienteDTO;
 import com.projeto.tcc.model.EncomendaDTO;
 import com.projeto.tcc.model.EntregaDTO;
-import com.projeto.tcc.model.EntregadorDTO;
 import com.projeto.tcc.model.OperadorLogisticoDTO;
 import com.projeto.tcc.repository.EncomendaRepository;
 
@@ -31,9 +30,6 @@ public class EncomendaService {
     
     @Autowired
     private UsuarioService usuarioService;
-    
-    @Autowired
-    private EntregadorService entregadorService;
     
     @Autowired
     private EntregaService entregaService;
