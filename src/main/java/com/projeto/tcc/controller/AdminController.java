@@ -19,11 +19,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -38,14 +36,14 @@ public class AdminController {
     @Autowired
     private OperadorLogisticoService operadorLogisticoService;
     
-    @PostMapping("/login")
+    @PostMapping("/admin/login")
     public String login(@RequestBody UserRequestDTO request) {
         AdminDTO admin = adminService.login(request);
         
         return tokenService.gerarToken(admin);
     }
     
-    @GetMapping("/me")
+    @GetMapping("/admin/me")
     public AdminDTO adminLogado(@RequestHeader("Authorization") String auth) {
         String token = auth.replace("Bearer ", "");
         Integer id = tokenService.extrairId(token);
@@ -53,22 +51,22 @@ public class AdminController {
         return adminService.buscarAdminPorId(id);
     }
 
-    @PostMapping("/entregadores")
+    @PostMapping("/admin/cadastrar/entregador")
     public EntregadorDTO cadastrarEntregador(@RequestBody UsuarioDTO usuario) {
         return entregadorService.cadastrarEntregador(usuario.getNomeUsuario(), usuario.getEmailUsuario(), usuario.getSenhaUsuario());
     }
 
-    @PostMapping("/operadores-logisticos")
+    @PostMapping("/admin/cadastrar/operador")
     public OperadorLogisticoDTO cadastrarOperadorLogistico(@RequestBody UsuarioDTO usuario) {
         return operadorLogisticoService.cadastrarOperadorLogistico(usuario.getNomeUsuario(), usuario.getEmailUsuario(), usuario.getSenhaUsuario());
     }
 
-    @GetMapping("/entregadores")
+    @GetMapping("admin/listar/entregadores")
     public List<EntregadorDTO> listarEntregadores() {
         return entregadorService.listarEntregadores();
     }
 
-    @GetMapping("/operadores-logisticos")
+    @GetMapping("admin/listar/operadores")
     public List<OperadorLogisticoDTO> listarOperadoresLogisticos() {
         return operadorLogisticoService.listarOperadoresLogisticos();
     }

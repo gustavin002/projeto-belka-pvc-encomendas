@@ -14,12 +14,14 @@ import com.projeto.tcc.service.EntregadorService;
 import com.projeto.tcc.service.TokenService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class OperadorLogisticoController {
@@ -33,7 +35,7 @@ public class OperadorLogisticoController {
     @Autowired
     private EntregadorService entregadorService;
 
-    @PostMapping("operador/cadastrar/encomendas")
+    @PostMapping("/operador/cadastrar/encomendas")
     public EncomendaDTO cadastrarEncomenda(@RequestHeader("Authorization") String auth, @RequestBody ClienteDTO clienteRequest) {
         String token = auth.replace("Bearer ", "");
         UsuarioDTO usuario = tokenService.extrairClaim(token);
@@ -41,16 +43,25 @@ public class OperadorLogisticoController {
         return encomendaService.cadastrarEncomenda(usuario.getIdUsuario(), clienteRequest);
     }
 
-    @GetMapping("operador/entregadores/disponiveis")
+    @GetMapping("/operador/entregadores/disponiveis")
     public List<EntregadorDTO> listarEntregadoresDisponiveis(@RequestHeader("Authorization") String auth) {
         String token = auth.replace("Bearer ", "");
-        Boolean usuario = tokenService.validarToken(token);
+
+        if (!tokenService.validarToken(token)) {
+            throw new ResponseStatusException(HttpStatusCode.valueOf(401), "Token inválido ou expirado");
+        }
         
         return entregadorService.listarEntregadoresDisponiveis();
     }
 
-    @PostMapping("operador/escolher/entregador")
-    public EntregaDTO escolherEntregadorParaEncomenda(@RequestParam Integer idEncomenda, @RequestParam Integer idEntregador) {
+    @PostMapping("/operador/escolher/entregador")
+    public EntregaDTO escolherEntregadorParaEncomenda(@RequestHeader("Authorization") String auth, @RequestParam Integer idEncomenda, @RequestParam Integer idEntregador) {
+        String token = auth.replace("Bearer ", "");
+        
+        if (!tokenService.validarToken(token)) {
+            throw new ResponseStatusException(HttpStatusCode.valueOf(401), "Token inválido ou expirado");
+        }
+        
         return entregadorService.escolherEntregadorParaEncomenda(idEncomenda, idEntregador);
     }
     

@@ -95,7 +95,7 @@ public class EncomendaService {
     }
     
     public EncomendaDTO atualizarStatus(Integer idEntrega, String novoStatus) {
-        EntregaDTO entrega = entregaService.buscarEntregaPorId(idEntrega);
+        EntregaDTO entrega = entregaService.verEntrega(idEntrega);
         EncomendaDTO encomenda = entrega.getEncomenda();
         encomenda.setStatusEncomenda(novoStatus);
         
@@ -125,7 +125,7 @@ public class EncomendaService {
     }
     
     public EncomendaDTO atualizarLocalAtual(Integer idEntrega, String novoLocal) {
-        EntregaDTO entrega = entregaService.buscarEntregaPorId(idEntrega);
+        EntregaDTO entrega = entregaService.verEntrega(idEntrega);
         EncomendaDTO encomenda = entrega.getEncomenda();
         encomenda.setEnderecoAtualEncomenda(novoLocal);
         

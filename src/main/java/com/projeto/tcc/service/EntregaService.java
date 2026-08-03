@@ -37,7 +37,7 @@ public class EntregaService {
         return String.format("%06d", numero);
     }
     
-    public EntregaDTO buscarEntregaPorId(Integer idEntrega) {
+    public EntregaDTO verEntrega(Integer idEntrega) {
         EntregaDTO entrega = entregaRepository.findByIdEntrega(idEntrega);
         
         if (entrega == null) {
@@ -58,7 +58,7 @@ public class EntregaService {
     }
     
     public EntregaDTO validarOTP(Integer idEntrega, String otpDigitado) {
-        EntregaDTO entrega = this.buscarEntregaPorId(idEntrega);
+        EntregaDTO entrega = this.verEntrega(idEntrega);
 
         if (!entrega.getCodigoOtpEntrega().equals(otpDigitado)) {
             throw new ResponseStatusException(HttpStatusCode.valueOf(400), "Código OTP inválido");
