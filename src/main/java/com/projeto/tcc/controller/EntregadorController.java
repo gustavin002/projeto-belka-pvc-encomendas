@@ -6,7 +6,6 @@ package com.projeto.tcc.controller;
 
 import com.projeto.tcc.model.EncomendaDTO;
 import com.projeto.tcc.model.EntregaDTO;
-import com.projeto.tcc.model.UsuarioDTO;
 import com.projeto.tcc.service.EncomendaService;
 import com.projeto.tcc.service.EntregaService;
 import com.projeto.tcc.service.TokenService;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/entregadores")
 public class EntregadorController {
     
     @Autowired
@@ -35,7 +33,7 @@ public class EntregadorController {
     @Autowired
     private TokenService tokenService;
     
-    @GetMapping("/entregas/{idEntrega}")
+    @GetMapping("/entregador/entrega/{idEntrega}")
     public EntregaDTO verEntrega(@RequestHeader("Authorization") String auth, @PathVariable Integer idEntrega) {
         String token = auth.replace("Bearer ", "");
         
@@ -46,7 +44,7 @@ public class EntregadorController {
         return entregaService.verEntrega(idEntrega);
     }
 
-    @PutMapping("/{idEntrega}/status")
+    @PutMapping("/entregador/entrega/{idEntrega}/status")
     public EncomendaDTO atualizarStatus(@RequestHeader("Authorization") String auth, @PathVariable Integer idEntrega, @RequestParam String novoStatus) {
         String token = auth.replace("Bearer ", "");
         
@@ -57,7 +55,7 @@ public class EntregadorController {
         return encomendaService.atualizarStatus(idEntrega, novoStatus);
     }
 
-     @PutMapping("/{idEntrega}/local")
+     @PutMapping("/entregador/entrega/{idEntrega}/local")
     public EncomendaDTO atualizarLocalAtual(@RequestHeader("Authorization") String auth, @PathVariable Integer idEntrega, @RequestParam String novoLocal) {
         String token = auth.replace("Bearer ", "");
         
@@ -68,7 +66,7 @@ public class EntregadorController {
         return encomendaService.atualizarLocalAtual(idEntrega, novoLocal);
     }
 
-    @PostMapping("/{idEntrega}/validar-otp")
+    @PostMapping("/entregador/entrega/{idEntrega}/validar/otp")
     public EntregaDTO validarOTP(@RequestHeader("Authorization") String auth, @PathVariable Integer idEntrega, @RequestParam String otpDigitado) {
         String token = auth.replace("Bearer ", "");
         

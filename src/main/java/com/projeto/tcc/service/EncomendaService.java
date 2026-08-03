@@ -132,7 +132,7 @@ public class EncomendaService {
         return encomendaRepository.save(encomenda);
     }
     
-    public List<EncomendaDTO> listarEncomendasPorOperador(Integer idOperadorLogistico) {
+    public List<EncomendaDTO> listarEncomendasDoOperador(Integer idOperadorLogistico) {
         return encomendaRepository.findByOperadorLogistico_idUsuario(idOperadorLogistico);      
     }
 
