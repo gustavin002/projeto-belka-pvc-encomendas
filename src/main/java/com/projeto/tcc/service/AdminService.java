@@ -28,7 +28,7 @@ public class AdminService {
         return admin;
     }
     
-    public AdminDTO buscarAdminPorId(Integer idAdmin) {
+    public AdminDTO buscarAdminLogado(Integer idAdmin) {
         AdminDTO admin = adminRepository.findByIdAdmin(idAdmin);
         
         if (admin == null) {

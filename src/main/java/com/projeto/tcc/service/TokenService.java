@@ -80,14 +80,18 @@ public class TokenService {
 
     public UsuarioDTO extrairClaim(String token) {
         Claims claims = Jwts.parser()
-                .verifyWith(this.getKeySign())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
+            .verifyWith(this.getKeySign())
+            .build()
+            .parseSignedClaims(token)
+            .getPayload();
 
         Integer id = claims.get("id", Integer.class);
 
         Optional<UsuarioDTO> resultado = usuarioRepository.findById(id);
+        
+        UsuarioDTO usuario = resultado.get();
+        
+
 
         if (resultado.isEmpty()) {
             throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Usuário do token não encontrado");

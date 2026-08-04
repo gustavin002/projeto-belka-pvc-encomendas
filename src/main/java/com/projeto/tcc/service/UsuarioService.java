@@ -33,6 +33,16 @@ public class UsuarioService {
 
         return usuario;
     }
+    
+    public UsuarioDTO buscarUsuarioLogado(Integer idUsuario) {
+        UsuarioDTO usuario = usuarioRepository.findByIdUsuario(idUsuario);
+        
+        if (usuario == null) {
+            throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Admin não encontrado");
+        }
+        
+        return usuario;
+    }
 
     public void enviarEmail(String destinatario, String assunto, String corpo) {
         SimpleMailMessage mensagem = new SimpleMailMessage();

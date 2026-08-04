@@ -50,7 +50,7 @@ public class AdminController {
         String token = auth.replace("Bearer ", "");
         Integer id = tokenService.extrairId(token);
         
-        return adminService.buscarAdminPorId(id);
+        return adminService.buscarAdminLogado(id);
     }
 
     @PostMapping("/admin/cadastrar/entregador")

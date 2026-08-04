@@ -39,9 +39,9 @@ id_entrega integer primary key auto_increment,
 data_hora_entrega datetime not null,
 codigo_otp_entrega varchar(20) not null,
 id_encomenda int not null,
-id_entregador int not null,
+id_usuario int not null,
 foreign key (id_encomenda) references tb_encomenda (id_encomenda),
-foreign key (id_entregador) references tb_usuario (id_usuario)
+foreign key (id_usuario) references tb_usuario (id_usuario)
 );
 
 insert into tb_admin (email_admin, senha_admin) values
@@ -63,18 +63,18 @@ insert into tb_usuario (nome_usuario, email_usuario, senha_usuario, role_usuario
 insert into tb_cliente (nome_cliente, email_cliente, endereco_cliente) values
 ('Kaue', 'kaue@email.com', 'Rua das Flores, 123'),
 ('Fabio', 'fabio@email.com', 'Av. Brasil, 456'),
-('Fernando', 'fernando@email.com', 'Rua XV de Novembro'),
-('lincoln', 'lincoln@email.com', 'Rua Paraná, 852'),
-('Beatrice', 'beatrice@email.com', 'Av. Tiradentes, 1024');
+('Fernando', 'fernando@email.com', 'Rua XV de Novembro 67'),
+('Lincoln', 'lincoln@email.com', 'Rua Paraná, 852'),
+('Rodrigo', 'beatrice@email.com', 'Av. Tiradentes, 1024');
 
 insert into tb_encomenda (codigo_rastreio_encomenda, endereco_atual_encomenda, status_encomenda, id_cliente, id_operador_logistico) values
-('67674', 'Galpão Principal - Setor A', 'em separacao', 1, 1),
-('77778', 'Galpão Principal - Setor B', 'em transporte', 1, 1),
-('33317', 'Galpão Secundário - Setor C', 'em rota de entrega', 2, 2),
-('99881', 'Galpão Principal - Setor A', 'entregue', 2, 2),
-('35783', 'Galpão Principal - Setor B', 'em separacao', 3, 3),
-('25386', 'Galpão Secundário - Setor A', 'em transporte', 3, 3),
-('23729', 'Galpão Principal - Setor C', 'em rota de entrega', 4, 4),
-('12895', 'Galpão Secundário - Setor B', 'entregue', 4, 4),
+('67674', 'Galpão Principal - Setor A', 'em separação', 1, 1),
+('77778', 'Rua são goinhas - Maringa', 'em transporte', 1, 1),
+('33317', 'Rua Jose Pereira - São Paulo', 'em separação', 2, 2),
+('99881', 'Rua Joao Batista - Londrina', 'em transporte', 2, 2),
+('35783', 'Galpão Principal - Setor A', 'em separação', 3, 3),
+('25386', 'Rua Jaco Figueiredo - Cambé', 'em transporte', 3, 3),
+('23729', 'Rua Pedro Lima', 'em separação', 4, 4),
+('12895', 'Rua Gustavo Lorenzo - Arapiraca', 'em transporte', 4, 4),
 ('38942', 'Galpão Principal - Setor A', 'em separacao', 5, 5),
-('84743', 'Galpão Principal - Setor B', 'em transporte', 5, 5);
+('84743', 'Rua Matheus Martins - Joinville', 'em transporte', 5, 5);
