@@ -41,13 +41,18 @@ public class AdminController {
     @PostMapping("/admin/login")
     public String login(@RequestBody UserRequestDTO request) {
         AdminDTO admin = adminService.login(request);
-        
+       
         return tokenService.gerarToken(admin);
     }
     
     @GetMapping("/admin/me")
     public AdminDTO adminLogado(@RequestHeader("Authorization") String auth) {
         String token = auth.replace("Bearer ", "");
+        
+        if (!tokenService.validarToken(token)) {
+            throw new ResponseStatusException(HttpStatusCode.valueOf(401), "Token inválido ou expirado");
+        }
+        
         Integer id = tokenService.extrairId(token);
         
         return adminService.buscarAdminLogado(id);

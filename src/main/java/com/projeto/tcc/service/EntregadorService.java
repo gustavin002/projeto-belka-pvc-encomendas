@@ -45,6 +45,11 @@ public class EntregadorService extends UsuarioService {
     }
 
     public EntregadorDTO cadastrarEntregador(String nome, String email, String senha) {
+        
+        if(senha.length() < 6 || senha.length() > 20){
+            throw new ResponseStatusException(HttpStatusCode.valueOf(400), "Erro!!! senha deve ser maior que 6 e menor que 20 caracteres");
+        }
+        
         EntregadorDTO entregador = new EntregadorDTO();
         entregador.setNomeUsuario(nome);
         entregador.setEmailUsuario(email);

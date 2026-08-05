@@ -88,10 +88,6 @@ public class TokenService {
         Integer id = claims.get("id", Integer.class);
 
         Optional<UsuarioDTO> resultado = usuarioRepository.findById(id);
-        
-        UsuarioDTO usuario = resultado.get();
-        
-
 
         if (resultado.isEmpty()) {
             throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Usuário do token não encontrado");
