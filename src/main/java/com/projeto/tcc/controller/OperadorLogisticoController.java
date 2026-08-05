@@ -38,6 +38,11 @@ public class OperadorLogisticoController {
     @PostMapping("/operador/cadastrar/encomendas")
     public EncomendaDTO cadastrarEncomenda(@RequestHeader("Authorization") String auth, @RequestBody ClienteDTO clienteRequest) {
         String token = auth.replace("Bearer ", "");
+        
+        if (!tokenService.validarToken(token)) {
+            throw new ResponseStatusException(HttpStatusCode.valueOf(401), "Token inválido ou expirado");
+        }
+        
         UsuarioDTO usuario = tokenService.extrairClaim(token);
 
         return encomendaService.cadastrarEncomenda(usuario.getIdUsuario(), clienteRequest);
