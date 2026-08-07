@@ -17,5 +17,6 @@ public interface EncomendaRepository extends JpaRepository<EncomendaDTO, Integer
     boolean existsByCodigoRastreioEncomenda(String codigo);
     List<EncomendaDTO> findByCliente_idCliente(Integer idCliente);
     List<EncomendaDTO> findByOperadorLogistico_idUsuario(Integer idOperadorLogistico);
-
+    List<EncomendaDTO> findByOperadorLogistico_idUsuarioAndAtribuicaoEncomenda(Integer idOperadorLogistico, String atribuicaoEncomenda);
+    
 }

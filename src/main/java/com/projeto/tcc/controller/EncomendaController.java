@@ -25,8 +25,21 @@ public class EncomendaController {
     @Autowired
     private TokenService tokenService;
 
-    @GetMapping("/listar/encomendas/operador")
+    @GetMapping("/encomendas/operador")
     public List<EncomendaDTO> listarEncomendasDoOperador(@RequestHeader("Authorization") String auth) {
+        String token = auth.replace("Bearer ", "");
+        
+        if (!tokenService.validarToken(token)) {
+            throw new ResponseStatusException(HttpStatusCode.valueOf(401), "Token inválido ou expirado");
+        }
+        
+        UsuarioDTO usuario = tokenService.extrairClaim(token);
+
+        return encomendaService.listarEncomendasDoOperador(usuario.getIdUsuario());
+    }
+    
+    @GetMapping("/encomendas/nao/atribuidas/operador")
+    public List<EncomendaDTO> listarEncomendasNaoAtribuidasDoOperador(@RequestHeader("Authorization") String auth) {
         String token = auth.replace("Bearer ", "");
         
         if (!tokenService.validarToken(token)) {

@@ -42,6 +42,7 @@ public class EncomendaService {
         encomenda.setCodigoRastreioEncomenda(this.gerarCodigoRastreio());
         encomenda.setEnderecoAtualEncomenda("Centro de Distribuição de Origem");
         encomenda.setStatusEncomenda("em separacao");
+        encomenda.setAtribuicaoEncomenda("nao atribuida");
         encomenda.setCliente(cliente);
         encomenda.setOperadorLogistico(operador);
 
@@ -134,6 +135,16 @@ public class EncomendaService {
     
     public List<EncomendaDTO> listarEncomendasDoOperador(Integer idOperadorLogistico) {
         return encomendaRepository.findByOperadorLogistico_idUsuario(idOperadorLogistico);      
+    }
+    
+    public List<EncomendaDTO> listarEncomendasNaoAtribuidasDoOperador(Integer idOperadorLogistico) {
+        return encomendaRepository.findByOperadorLogistico_idUsuarioAndAtribuicaoEncomenda(idOperadorLogistico, "não atribuída");
+    }
+    
+    public EncomendaDTO atualizarAtribuicaoDaEncomenda(EncomendaDTO encomenda, String novaAtribuicao){
+        encomenda.setAtribuicaoEncomenda(novaAtribuicao);
+        
+        return encomendaRepository.save(encomenda);
     }
 
 }

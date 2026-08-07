@@ -31,6 +31,9 @@ public class EncomendaDTO {
     @Column(name = "status_encomenda", nullable = false)
     private String statusEncomenda;
 
+    @Column(name = "atribuicao_encomenda", nullable = false)
+    private String atribuicaoEncomenda;
+    
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
     private ClienteDTO cliente;
@@ -85,6 +88,14 @@ public class EncomendaDTO {
 
     public void setOperadorLogistico(OperadorLogisticoDTO operadorLogistico) {
         this.operadorLogistico = operadorLogistico;
+    }
+
+    public String getAtribuicaoEncomenda() {
+        return atribuicaoEncomenda;
+    }
+
+    public void setAtribuicaoEncomenda(String atribuicaoEncomenda) {
+        this.atribuicaoEncomenda = atribuicaoEncomenda;
     }
 
 }

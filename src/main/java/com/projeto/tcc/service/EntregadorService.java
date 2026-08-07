@@ -80,6 +80,8 @@ public class EntregadorService extends UsuarioService {
         EntregaDTO entregaSalva = entregaService.salvarEntrega(entrega);
 
         this.atualizarDisponibilidade(entregador, "indisponível");
+        
+        encomendaService.atualizarAtribuicaoDaEncomenda(encomenda, "atribuída");
 
         operadorLogisticoService.enviarEmailEntregador(entregador, encomenda);
 
